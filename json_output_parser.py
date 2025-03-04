@@ -61,3 +61,35 @@ iface = gr.Interface(fn=process_input,
                      title="Document Query with Ollama",
                      description="Enter URLs and a question to query the documents.")
 iface.launch()
+
+
+
+# from langchain.output_parsers import JsonOutputParser
+# from langchain_core.prompts import ChatPromptTemplate
+# from langchain_community.chat_models import ChatOllama
+
+# # Define the JSON schema
+# joke_schema = {
+#     "properties": {
+#         "setup": {"type": "string", "description": "question to set up a joke"},
+#         "punchline": {"type": "string", "description": "answer to resolve the joke"}
+#     },
+#     "required": ["setup", "punchline"]
+# }
+
+# # Create the prompt template
+# prompt_template = ChatPromptTemplate.from_template(
+#     template="Answer the user query.\n{format_instructions}\n{query}\n",
+#     input_variables=["query"],
+#     partial_variables={"format_instructions": JsonOutputParser.get_format_instructions(joke_schema)}
+# )
+
+# # Use the JsonOutputParser
+# parser = JsonOutputParser()
+# model = ChatOllama(model="llama3.2")
+# chain = prompt_template | model | parser
+
+# # Example query
+# query = "Tell me a joke."
+# result = chain.invoke({"query": query})
+# print(result)
