@@ -53,3 +53,31 @@ iface = gr.Interface(fn=process_input,
                      title="Document Query with Ollama",
                      description="Enter URLs and a question to query the documents.")
 iface.launch()
+
+
+# from pydantic import BaseModel
+# from langchain.output_parsers import PydanticOutputParser
+# from langchain_core.prompts import ChatPromptTemplate
+# from langchain_community.chat_models import ChatOllama
+
+# # Define the Pydantic model
+# class Joke(BaseModel):
+#     setup: str
+#     punchline: str
+
+# # Create the prompt template
+# prompt_template = ChatPromptTemplate.from_template(
+#     template="Answer the user query.\n{format_instructions}\n{query}\n",
+#     input_variables=["query"],
+#     partial_variables={"format_instructions": PydanticOutputParser.get_format_instructions(Joke)}
+# )
+
+# # Use the PydanticOutputParser
+# parser = PydanticOutputParser(Joke)
+# model = ChatOllama(model="llama3.2")
+# chain = prompt_template | model | parser
+
+# # Example query
+# query = "Tell me a joke."
+# result = chain.invoke({"query": query})
+# print(result)
